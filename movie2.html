@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Question</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        body { 
+            text-align: center; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('https://i.imgur.com/y4Cok99.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            flex-direction: column;
+        }
+        .box { 
+            background-color: rgba(0,0,0,0.5); 
+            padding: 20px; 
+            border-radius: 10px;
+            max-width: 90%;
+        }
+        h1 { font-size: 28px; margin: 0; }
+        button { 
+            padding: 15px 30px; 
+            font-size: 20px; 
+            margin: 20px; 
+            border-radius: 8px; 
+            border: none; 
+            cursor: pointer; 
+        }
+        #yesBtn { background-color: #007bff; color: white; }
+        #noBtn { background-color: #dc3545; color: white; }
+        #clickYesText { color: red; font-size: 28px; font-weight: bold; margin-bottom: 30px; }
+        #clickYesButton { background-color: pink; color: white; font-weight: bold; }
+        #celebrateText { 
+            font-size: 50px; 
+            font-weight: bold; 
+            text-align: center; 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Question Box -->
+    <div id="questionBox" class="box">
+        <h1>Hi bebe, Do you want to watch The Notebook with me this 6:30PM with me?</h1>
+        <div>
+            <button id="yesBtn" onclick="answer('yes')">Yes</button>
+            <button id="noBtn" onclick="answer('no')">No</button>
+        </div>
+    </div>
+
+    <!-- Response Box for Yes -->
+    <div id="responseBox" class="box" style="display:none;"></div>
+
+    <!-- Click Yes Box for No -->
+    <div id="clickYesBox" class="box" style="display:none;">
+        <div id="clickYesText">CLICK YES CLICK YES CLICK YES</div>
+        <button id="clickYesButton" onclick="finalMessage()">Click yes if u love me</button>
+    </div>
+
+    <script>
+        const originalBackground = 'https://i.imgur.com/y4Cok99.jpeg';
+        const noBackground = 'https://i.imgur.com/tjuW35G.jpeg';
+
+        function answer(choice) {
+            if(choice === 'yes') {
+                document.getElementById('questionBox').style.display = 'none';
+                const response = document.getElementById('responseBox');
+                response.style.display = 'block';
+                response.innerHTML = "<div id='celebrateText'>wowww sigeee 🎉🥳✨</div>";
+            } else {
+                document.body.style.backgroundImage = `url('${noBackground}')`;
+                document.getElementById('questionBox').style.display = 'none';
+                document.getElementById('clickYesBox').style.display = 'block';
+            }
+        }
+
+        function finalMessage() {
+            const clickYesBox = document.getElementById('clickYesBox');
+            clickYesBox.innerHTML = "<h1>yeheyyy, i love youuu</h1>";
+            // revert background to original
+            document.body.style.backgroundImage = `url('${originalBackground}')`;
+        }
+    </script>
+
+</body>
+</html>
